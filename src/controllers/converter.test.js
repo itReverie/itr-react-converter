@@ -1,4 +1,3 @@
-//import {evaluateFrom,convertFromEtherToUnit,convertFromUnitToEther,convertFromCurrencyToEther} from './converter';
 import Converter from './converter';
 import {noExponents} from './helpers';
 
@@ -41,7 +40,7 @@ describe('testing the Converter Class', ()=>{
         let from={type:'unit', name:'szabo', amount:'1.45'};
         let to={type:'unit', name:'shannon'}
 
-        let result=converter.convert(from, to, 1.45);
+        let result=converter.convert(from, to, 1.45, false);
         expect(result.amount).toEqual("1449.9999999999998");
         expect(result.unit).toEqual("shannon");
     });
@@ -52,7 +51,7 @@ describe('testing the Converter Class', ()=>{
         let from={type:'ether', name:'ether'};
         let to={type:'unit', name:'wei'}
 
-        let result=converter.convert(from, to, 1);
+        let result=converter.convert(from, to, 1, false);
         expect(result.amount).toEqual("1000000000000000000");
         expect(result.unit).toEqual("wei");
     });

@@ -2,16 +2,21 @@ import config from '../config/';
 import {siplifyWeis, getWeisParts, noExponents} from './helpers';
 import currenciesApi from '../api/currenciesApi';
 
-const etherToUnits= config.etherToUnits;
 
 export default class Converter{
 
     constructor(){
-      //TODO: This ideally should be cache and updated more frequenlty to have accurated data.
-      currenciesApi.loadCurrencies().then( currencies=>{
+      this.etherToCurrency={};
+      this.etherToUnits= config.etherToUnits;
+    }
+
+    getCurrentPrices(){
+        //TODO: This ideally should be cache and updated more frequenlty to have accurated data.
+        currenciesApi.loadCurrencies().then( currencies=>{
         this.etherToCurrency=currencies;
       });
     }
+
 
     convertFromEtherToCurrency(currencyCode, amount){
         let currency=this.etherToCurrency.filter(item=>{return item.name.toLowerCase()=== currencyCode.toLowerCase() });
@@ -27,7 +32,7 @@ export default class Converter{
     }
 
     convertFromUnitToEther(fromUnitName, amount){
-      let unit = etherToUnits.units.filter(item=>{return item.name.toLowerCase()=== fromUnitName });
+      let unit = this.etherToUnits.units.filter(item=>{return item.name.toLowerCase()=== fromUnitName });
       let resultAmount = amount/Math.pow(10, unit[0].exponential );
       return resultAmount;
     }
@@ -35,7 +40,7 @@ export default class Converter{
     //This is the 1/2 function that returns an object of type {amount, unit}
     convertFromEtherToUnit(toUnitName, amount, simplify)
     {
-          let resultUnit = etherToUnits.units.filter(item=>{return item.name.toLowerCase()=== toUnitName });
+          let resultUnit = this.etherToUnits.units.filter(item=>{return item.name.toLowerCase()=== toUnitName });
           let resultUnitName=resultUnit[0].name;
           let resultExponential= resultUnit[0].exponential;
           
@@ -119,6 +124,13 @@ export default class Converter{
     convert(from , to , amount){
         let simplify=true;
 
+        //TODO: Improve if time.
+        //Get the latest prices. There might be a better way to cache this to avoid unnecesary calls.
+        if(from.type==="currency" || to.type==="currency"){
+           this.getCurrentPrices();
+        }
+
+
         if(from.type===to.type || 
             (from.type!=="currency" && to.name==="wei") ||
             (from.name==="wei" && to.name==="ether") ||
@@ -130,7 +142,7 @@ export default class Converter{
         try{
             let base=this.evaluateFrom(from.type, from.name, amount);
             result=this.evaluateTo(to.type, to.name, base, simplify);
-            result.error="test test tes"
+            
 
         }
         catch(error)

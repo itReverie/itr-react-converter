@@ -54,8 +54,8 @@ class Converter extends Component{
               options={this.props.conversionUnits}
               onItemChanged={this.onItemToChanged}
               defaultValue={{value:18, label:"wei"}}
-              resultAmount={this.props.converter.result===undefined?"":this.props.converter.result.amount}
-              resultUnit={this.props.converter.result===undefined?"":this.props.converter.result.unit}
+              resultAmount={this.props.converter.result===undefined?"":this.props.converter.result.amount.toString()}
+              resultUnit={this.props.converter.result===undefined?"":this.props.converter.result.unit.toString()}
               />
 
      </MainContainer>

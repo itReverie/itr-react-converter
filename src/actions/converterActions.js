@@ -1,13 +1,12 @@
 import * as types from './actionTypes';
 import Converter from '../controllers/converter';
 
-let converterClass= new Converter();
+let converterClass = new Converter();
 
 export function updateConversionFrom(selectedItem, converter){
     return function (dispatch){
         let from={type:selectedItem.type,name:selectedItem.name};
         dispatch(updateConversionFromSuccess(from));
-        
         let resultConversion=converterClass.convert(from,
                                                     converter.to,
                                                     converter.amount);

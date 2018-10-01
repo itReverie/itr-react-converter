@@ -18,4 +18,5 @@ export const ErrorMessage=styled.div`
                             justify-content: center;
                             color: #B23C3C;
                             font-size: 1.2em;
+                            padding:20px;
                         `;
