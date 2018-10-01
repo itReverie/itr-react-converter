@@ -8,7 +8,7 @@ const Root = ({ imports }) => (
     db={db}
     imports={imports}
     hashRouter={false}
-    websocketUrl="ws://127.0.0.1:60506"
+    websocketUrl="ws://127.0.0.1:60507"
   />
 )
 

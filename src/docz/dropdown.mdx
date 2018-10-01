@@ -7,15 +7,14 @@ menu: Dropdown
 import { Playground, PropsTable } from 'docz'
 import Dropdown from '../app/components/dropdown'
 
+# Dropdown for units
 
-# Button
-
-## Preperties Table
+## Properties Table
 <PropsTable of={Dropdown} />
 
 
 
 ## Playground
 <Playground>
-      <Dropdown />
+      <Dropdown options={[{label:'wei', value:'18'},{label:'ether', value:'1'}]} />
 </Playground>
