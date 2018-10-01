@@ -44,7 +44,6 @@
     "build-app": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "precommit": "lint-staged",
     "serve": "NODE_ENV=production node ./server/index.js",
     "dev": "docz dev -p 4000",
     "build": "docz build"
