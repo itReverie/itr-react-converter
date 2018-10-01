@@ -76,7 +76,7 @@ export default class Converter{
     }
 
     evaluateFrom (condition, from, amount) {
-        var self=this;
+        let self=this;
         let fromResult = {
           'currency': function () {
             return self.convertFromCurrencyToEther(from, amount);
@@ -99,7 +99,7 @@ export default class Converter{
     }
 
     evaluateTo (condition, to, amount, isSimplify=true) {
-        var self=this;
+        let self=this;
         let toResult = {
           'currency': function () {
             return self.convertFromEtherToCurrency(to, amount);

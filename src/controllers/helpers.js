@@ -61,10 +61,10 @@ export function getWeisParts(amount){
 }
 
 export function noExponents(amount){
-        var data= String(amount).split(/[eE]/);
+        let data= String(amount).split(/[eE]/);
         if(data.length=== 1) return data[0]; 
 
-        var  z= '', sign= this<0? '-':'',
+        let  z= '', sign= this<0? '-':'',
         str= data[0].replace('.', ''),
         mag= Number(data[1])+ 1;
 
