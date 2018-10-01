@@ -3,8 +3,12 @@ import config from '../config';
 export function siplifyWeis(amountStr){
         //First we will get rid of too many zeros
         const regex = /[0]/g;
-        let simplifyExponential = amountStr.match(regex).length;
-
+        
+        let simplifyExponential =0;
+        if(amountStr.match(regex) !== null){
+            simplifyExponential = amountStr.match(regex).length;
+        }
+        
         //18 is the max we can simplify
         if(simplifyExponential>18){
             simplifyExponential=18;

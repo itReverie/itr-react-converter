@@ -8,8 +8,35 @@
     "repository": null
   },
   "entries": {
+    "src/docz/dropdown.mdx": {
+      "name": "Dropdown",
+      "menu": "Dropdown",
+      "id": "64ff8fb6cddab183ea6134c318df6dc8",
+      "filepath": "src/docz/dropdown.mdx",
+      "link": null,
+      "slug": "src-docz-dropdown",
+      "route": "/src-docz-dropdown",
+      "order": 0,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "button",
+          "value": "Button"
+        },
+        {
+          "depth": 2,
+          "slug": "preperties-table",
+          "value": "Preperties table"
+        },
+        {
+          "depth": 2,
+          "slug": "playground",
+          "value": "Playground"
+        }
+      ]
+    },
     "src/docz/index.mdx": {
-      "name": "Getting Started",
+      "name": "Converter",
       "route": "/",
       "order": 1,
       "id": "93b9d61e55743f142980c1aa9b37d4d4",
@@ -20,13 +47,40 @@
       "headings": [
         {
           "depth": 1,
-          "slug": "getting-started",
-          "value": "Getting started"
+          "slug": "converter-class",
+          "value": "Converter class"
         },
         {
           "depth": 2,
-          "slug": "consistency",
-          "value": "Consistency"
+          "slug": "issues",
+          "value": "Issues"
+        }
+      ]
+    },
+    "src/docz/input.mdx": {
+      "name": "Input",
+      "menu": "Input",
+      "id": "e3ff0c2151afb65c25287960192bcb42",
+      "filepath": "src/docz/input.mdx",
+      "link": null,
+      "slug": "src-docz-input",
+      "route": "/src-docz-input",
+      "order": 0,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "button",
+          "value": "Button"
+        },
+        {
+          "depth": 2,
+          "slug": "preperties-table",
+          "value": "Preperties table"
+        },
+        {
+          "depth": 2,
+          "slug": "playground",
+          "value": "Playground"
         }
       ]
     }

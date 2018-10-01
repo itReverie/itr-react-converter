@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const StyledHeaderContainer= styled.div`
-                    background-color: #aaaaaa
-                    color:#8BCFC0;
+                    background-color: #E1E2E2
+                    color:#59CDB3;/*#8BCFC0;*/
                     height:70px;
                     display: flex;
                     justify-content:space-between;
@@ -13,5 +13,8 @@ export const StyledIconHome=styled.img`
                     margin-left:40px;
                     cursor: pointer;`;
 export const StyledTitle= styled.div`
-                    flex: auto;`;
+                    flex: auto;
+                    text-align: center;
+                    text-transform: capitalize;
+                    font-weight: bolder;`;
                     

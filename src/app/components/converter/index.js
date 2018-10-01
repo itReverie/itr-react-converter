@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from "prop-types";
-import {MainContainer} from './converter.style';
+import {MainContainer, ConvertButton, ErrorMessage} from './converter.style';
 import Card from '../../components/card';
-import convertButton from '../../assets/icons/convert.svg';
+import equalButton from '../../assets/icons/equal.png';
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -35,6 +35,7 @@ class Converter extends Component{
 
   render(){
     return(
+  <div>
     <MainContainer>
         <Card id="from" 
               title="From"
@@ -45,7 +46,7 @@ class Converter extends Component{
               defaultValue={{value:18, label:"wei"}}
               />
 
-        <img src={convertButton} alt="Converter"/>
+        <ConvertButton src={equalButton} alt="Converter"/>
 
         <Card id="to" 
               title="To"
@@ -53,10 +54,14 @@ class Converter extends Component{
               options={this.props.conversionUnits}
               onItemChanged={this.onItemToChanged}
               defaultValue={{value:18, label:"wei"}}
-              resultAmount={this.props.converter.result.amount}
-              resultUnits={this.props.converter.result.unit}
+              resultAmount={this.props.converter.result===undefined?"":this.props.converter.result.amount}
+              resultUnit={this.props.converter.result===undefined?"":this.props.converter.result.unit}
               />
-    </MainContainer>
+
+     </MainContainer>
+      <ErrorMessage>{this.props.converter.result===undefined?"":this.props.converter.result.error}</ErrorMessage>
+   </div>
+
 )
   }
 }

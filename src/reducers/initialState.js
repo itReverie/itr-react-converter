@@ -4,6 +4,6 @@ export default{
     converter:{from:{type:'unit', name:'wei'},
                  to:{type:'unit', name:'wei'}, 
                 amount:1,
-                result:{amount:'1', unit:'wei'}}
+                result:{amount:'1', unit:'wei', error:""}}
   };
   

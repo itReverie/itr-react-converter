@@ -1,19 +1,27 @@
 import config from '../config/';
 import {siplifyWeis, getWeisParts, noExponents} from './helpers';
+import currenciesApi from '../api/currenciesApi';
 
 const etherToUnits= config.etherToUnits;
-const etherToCurrency= {};
 
 export default class Converter{
 
+    constructor(){
+      //TODO: This ideally should be cache and updated more frequenlty to have accurated data.
+      currenciesApi.loadCurrencies().then( currencies=>{
+        this.etherToCurrency=currencies;
+      });
+    }
+
     convertFromEtherToCurrency(currencyCode, amount){
-        let currency = etherToCurrency.currencies.filter(item=>{return item.code.toLowerCase()=== currencyCode });
+        let currency=this.etherToCurrency.filter(item=>{return item.name.toLowerCase()=== currencyCode.toLowerCase() });
         let resultAmount = amount * currency[0].value;
-        return resultAmount;
+        return { amount: resultAmount,
+                unit: currencyCode }
     }
 
     convertFromCurrencyToEther(currencyCode, amount){
-        let currency = etherToCurrency.currencies.filter(item=>{return item.code.toLowerCase()=== currencyCode });
+        let currency = this.etherToCurrency.filter(item=>{return item.name.toLowerCase()=== currencyCode.toLowerCase() });
         let resultAmount = amount / currency[0].value;
         return resultAmount;
     }
@@ -110,15 +118,30 @@ export default class Converter{
   
     convert(from , to , amount){
         let simplify=true;
-        //TODO: This can be done better if I have time
+
         if(from.type===to.type || 
-            to.name==="wei" ||
+            (from.type!=="currency" && to.name==="wei") ||
             (from.name==="wei" && to.name==="ether") ||
             (from.name==="ether" && to.type==="unit")){
             simplify=false;
         }
-        let base=this.evaluateFrom(from.type, from.name, amount);
-        let result=this.evaluateTo(to.type, to.name, base, simplify);
+
+        let result;
+        try{
+            let base=this.evaluateFrom(from.type, from.name, amount);
+            result=this.evaluateTo(to.type, to.name, base, simplify);
+            result.error="test test tes"
+
+        }
+        catch(error)
+        {
+           //TODO: This error should be logged rather than just writting it in the console.
+           console.log(error.message);
+           result={
+                  amount:"Invalid",
+                  unit:"",
+                  error:"Sorry, we had some difficulties procesing your request."};
+        }
         return result;
     }
 }

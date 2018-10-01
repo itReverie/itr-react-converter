@@ -1,5 +1,4 @@
 import config from '../config';
-
 export default class Units
 {
     loadEtherUnits(){
@@ -8,6 +7,4 @@ export default class Units
                                                             name: unit.name,
                                                             type: unit.type }});
     }
-
-   
 }

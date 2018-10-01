@@ -21,7 +21,7 @@ describe('✗ sending a wrong API request ', () => {
 
 })
 
-describe('✓ sending a valid API request to the giphy API', () => {
+describe('✓ sending a valid API request to the prices API', () => {
 
     //'Initialize a valid configuration for the API'
     beforeEach(()=>{
@@ -35,5 +35,15 @@ describe('✓ sending a valid API request to the giphy API', () => {
     expect(result).toHaveProperty('EUR');
     expect(result).toHaveProperty('JPY');
     expect(result).toHaveProperty('USD');
+  });
+
+
+  it('should load currencies on the needed format', async () => {
+    expect.assertions(4);
+    const result = await currenciesApi.loadCurrencies();
+    expect(result[0]).toHaveProperty('label');
+    expect(result[0]).toHaveProperty('name');
+    expect(result[0]).toHaveProperty('type');
+    expect(result[0]).toHaveProperty('value');
   });
 })

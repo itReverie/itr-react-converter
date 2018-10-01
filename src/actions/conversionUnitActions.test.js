@@ -13,28 +13,22 @@ describe("✓ loading conversion units action",  () => {
     const expectedAction = { conversionUnits :[], type: types.LOAD_CONVERSION_UNITS,  };
 
     beforeEach(() => {
-      //fetch.resetMocks()
     })
 
-    it("should dispatch LOAD_CONVERSION_UNITS ", () => {
+    it("should dispatch LOAD_CONVERSION_UNITS ", (done) => {
         const store = mockStore({conversionUnits: initialState.conversionUnits}, expectedAction);
 
         store.dispatch(conversionUnitActions.loadConversionUnits())
+        .then(() => {
           const actions = store.getActions();
           expect(actions.length).toEqual(1);
           expect(actions[0].type).toEqual(types.LOAD_CONVERSION_UNITS);
           expect(Object.keys(actions[0].conversionUnits).length).toEqual(7);
           expect.assertions(3);
+          done();
+        })
+        .catch(error => {
+          done();
+        });
     });
-
-  //   it("should dispatch CHANGE_CONVERSION_UNIT ", () => {
-  //     const store = mockStore({conversionUnits: initialState.conversionUnits}, expectedAction);
-  //     let conversionUnitSelected={type:'unit',name:'wei',amount:1};
-  //     store.dispatch(conversionUnitActions.onChangeConversionUnit(conversionUnitSelected))
-  //       const actions = store.getActions();
-  //       expect(actions.length).toEqual(1);
-  //       expect(actions[0].type).toEqual(types.CHANGE_CONVERSION_UNIT);
-  //       expect(Object.keys(actions[0].conversionUnit)).toEqual(Object.keys(conversionUnitSelected));
-  //       expect.assertions(3);
-  // });
 });

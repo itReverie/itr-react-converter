@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Dropdown from '../dropdown';
-import {StyledCard, Title} from './card.style';
+import {StyledCard, Title, StyledResultAmount, OutputUnit} from './card.style';
 import Input from '../input';
 import Output from '../output';
 
@@ -9,15 +9,16 @@ const Card =(props)=>{
 
     let number=props.type==="input" ?  <Input type='output' 
                                              onInputChanged={props.onInputChanged}/> 
-                                    :  <Output resultAmount={props.resultAmount}/>;
+                                    :  <div><Output resultAmount={props.resultAmount}/>
+                                             <OutputUnit>{props.resultUnit}</OutputUnit></div>;
    
     return (<StyledCard id="card">
             <Title>{props.title}</Title>
             <Dropdown options={props.options} 
                       onItemChanged={props.onItemChanged}
                       defaultValue={props.defaultValue}/>
-            {number}
-            <label>{props.resultUnit}</label>
+            <StyledResultAmount>{number}</StyledResultAmount>
+           
     </StyledCard>)
 }
 
@@ -34,7 +35,7 @@ Card.propTypes={
 
 Card.defaultProps={
     type:'input',
-    resultUnits:'1',
+    resultUnit:'1',
     defaultValue:{value:18, label:"wei"}
 }
 

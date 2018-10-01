@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import NumberFormat from 'react-number-format';
+
+import {StyledInput} from './input.style';
 
 export default class Input extends Component{
     constructor(props){
@@ -15,7 +16,7 @@ export default class Input extends Component{
     }
 
     render(){
-        return(<NumberFormat value={this.state.amount} 
+        return(<StyledInput value={this.state.amount} 
             thousandSeparator={true} 
             onChange={this.onInputChanged}/>)
     }

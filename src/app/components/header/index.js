@@ -5,7 +5,7 @@ import home from '../../assets/icons/home.svg';
 const Header = () =>{
         return (<StyledHeaderContainer>
                     <StyledIconHome src={home}/>
-                    <StyledTitle>Ether currency converter</StyledTitle>
+                    <StyledTitle><h2>Ether currency converter</h2></StyledTitle>
                 </StyledHeaderContainer>);
 }
 
